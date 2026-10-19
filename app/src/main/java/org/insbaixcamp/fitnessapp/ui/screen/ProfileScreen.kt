@@ -40,10 +40,13 @@ fun ProfileScreen(
     pes: Int,
     altura: Int
 ) {
-    Column() {
+    Column(
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+
 
         ) {
             Text(
@@ -72,7 +75,7 @@ fun ProfileScreen(
             Column(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp) ,
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
                 Image(
@@ -216,7 +219,8 @@ fun ProfileScreen(
 
             Row(
                 modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
 
             ) {
                 Text(
@@ -237,36 +241,82 @@ fun ProfileScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
 
             ) {
-                Card(modifier = Modifier.weight(1f),
-
+                Card(modifier = Modifier.weight(1f)
                 ) {
-                    Text(
-                        "Guanyar massa muscular",
-                        modifier = Modifier.padding(8.dp),
-                        fontSize = 20.sp
-                    )
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+
+                    ){
+                        Image(
+                            painter = painterResource(android.R.drawable.ic_menu_my_calendar),
+                            contentDescription = "Foto edad",
+                            modifier = Modifier.size(40.dp).padding(top = 8.dp)
+
+                        )
+
+                        Text(
+                            "Guanyar massa muscular",
+                            modifier = Modifier.padding(8.dp),
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp
+                        )
+                    }
+
                 }
 
                 Card(modifier = Modifier.weight(1f)) {
-                    Text(
-                        "Millorar la salut",
-                        modifier = Modifier.padding(8.dp),
-                        fontSize = 20.sp
-                    )
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+
+                    ) {
+
+                        Image(
+                            painter = painterResource(android.R.drawable.ic_menu_my_calendar),
+                            contentDescription = "Foto edad",
+                            modifier = Modifier.size(40.dp).padding(top = 8.dp)
+
+                        )
+
+                        Text(
+                            "Millorar la salut",
+                            modifier = Modifier.padding(8.dp),
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp
+                        )
+                    }
                 }
 
                 Card(modifier = Modifier.weight(1f)) {
-                    Text(
-                        "Mantenir el pes",
-                        modifier = Modifier.padding(8.dp),
-                        fontSize = 20.sp
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+
+                    ) {
+                        Image(
+                            painter = painterResource(android.R.drawable.ic_menu_my_calendar),
+                            contentDescription = "Foto edad",
+                            modifier = Modifier.size(40.dp).padding(top = 8.dp)
+
+                        )
+
+                        Text(
+                            "Mantenir el pes",
+                            modifier = Modifier.padding(8.dp),
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp
+                        )
+                    }
                 }
             }
 
             Row(
                 modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
 
             ) {
                 Text(

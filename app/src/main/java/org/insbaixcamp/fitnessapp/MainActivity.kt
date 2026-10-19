@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import org.insbaixcamp.fitnessapp.ui.screen.ProfileScreen
+import org.insbaixcamp.fitnessapp.ui.screen.EditProfileScreen
 import org.insbaixcamp.fitnessapp.ui.theme.FitnessAppTheme
 import java.util.Date
 
@@ -42,31 +43,20 @@ fun FitnessApp(){
     var email:String by remember { mutableStateOf("laia.soler@exemple.com") }
     var dataNaixament: String by remember { mutableStateOf("15/10/1999") }
     var genre: String by remember { mutableStateOf("Dona") }
-    var editant: Boolean by remember { mutableStateOf(false) }
+    var editant: Boolean by remember { mutableStateOf(true) }
     var pes: Int by remember { mutableIntStateOf(60)  }
     var altura: Int by remember { mutableIntStateOf(165)  }
 
 
     if(editant){
-        EditProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=false}, pes, altura)
+        EditProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=true}, pes, altura)
     } else {
         ProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=true}, pes, altura)
     }
 
 }
 
-@Composable
-fun EditProfileScreen(
-    x0: String,
-    x1: String,
-    x2: String,
-    x3: String,
-    onEditar: () -> Unit,
-    x5: Int,
-    x6: Int
-) {
-    TODO("Not yet implemented")
-}
+
 
 @Preview(showBackground = true)
 @Composable
