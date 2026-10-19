@@ -68,7 +68,7 @@ fun ProfileScreen(
             }
         }
 
-        // Caixa de foto i nom
+
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
