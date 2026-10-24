@@ -48,6 +48,7 @@ fun FitnessApp(){
     var altura: Int by remember { mutableIntStateOf(165)  }
 
 
+
     if(editant){
         EditProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=true}, pes, altura)
     } else {
