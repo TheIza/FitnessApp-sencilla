@@ -50,21 +50,24 @@ import org.insbaixcamp.fitnessapp.ui.component.OutlinedDatePickerField
 @Composable
 fun EditProfileScreen(
     nom: String,
+    onNomChange: (String) -> Unit,
     email: String,
+    onEmailChange: (String) -> Unit,
     dataNaixament: String,
+    onNaixamentChange: (String) -> Unit,
     genere: String,
+    onGenreChange: (String) -> Unit,
     onEditar: () -> Unit,
     pes: Int,
-    altura: Int
+    onPesChange: (String) -> Unit,
+    altura: Int,
+    onAlturaChange: (String) -> Unit
 
 ) {
     var genereSelect by rememberSaveable { mutableStateOf("")}
     var objectiu by rememberSaveable { mutableStateOf("")}
-    var nivell by rememberSaveable { mutableStateOf("")}
     var img by rememberSaveable { mutableStateOf( R.drawable.ic_launcher_foreground)}
-    var fotoSeleccionada by rememberSaveable {
-        mutableStateOf<Uri?>(null)
-    }
+    var fotoSeleccionada by rememberSaveable { mutableStateOf<Uri?>(null) }
 
     val selectorImagen = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -187,36 +190,48 @@ fun EditProfileScreen(
             modifier = Modifier.padding(8.dp)
         ) {
             OutlinedTextField(
-                state = rememberTextFieldState("Nom Cognoms"),
+                value = nom,
+                onValueChange = { nuevoTexto -> onNomChange(nuevoTexto) },
                 label = { Text("Nom complert") },
                 modifier = Modifier.padding(8.dp).fillMaxWidth()
             )
             OutlinedTextField(
-                state = rememberTextFieldState("exemple@gmail.com "),
+                value = email,
+                onValueChange = { nuevoEmail -> onEmailChange(nuevoEmail) },
                 label = { Text("Correu electrònic") },
                 modifier = Modifier.padding(8.dp).fillMaxWidth()
             )
+
+
             var birthDate by remember { mutableStateOf<Long?>(null) }
-            // datapicker de calendario
+
             OutlinedDatePickerField(
                 label = "Data de naixement",
                 selectedDateMillis = birthDate,
-                onDateSelected = { birthDate = it },
-                modifier = Modifier
-                    .padding(8.dp).fillMaxWidth()
+                onDateSelected = { millis ->
+                    birthDate = millis
+
+                    val formatter = java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault())
+                    val fechaString = formatter.format(java.util.Date(millis))
+
+                    onNaixamentChange(fechaString)
+                },
+                modifier = Modifier.padding(8.dp).fillMaxWidth()
             )
 
 
 
             MenuDesplegable(
-                label = "Objectiu",
+                label = "Gènere",
                 opcions = listOf(
                     "Dona",
                     "Home",
                     "Preferixo no dir-ho"
                 ),
-                valorSeleccionat = genereSelect,
-                onValorSeleccionat = { genereSelect = it },
+                valorSeleccionat = genere,
+                onValorSeleccionat = { nouGenere ->
+                    onGenreChange(nouGenere)
+                },
                 modifier = Modifier.padding(8.dp).fillMaxWidth()
             )
 
@@ -233,22 +248,21 @@ fun EditProfileScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 OutlinedTextField(
-                    state = rememberTextFieldState("160"),
+                    value = altura.toString(),
+                    onValueChange = { nuevaAltura -> onAlturaChange(nuevaAltura)  },
                     label = { Text("Altura (cm)") },
                     modifier = Modifier
                         .weight(1f)
-                        .padding(4.dp).fillMaxWidth(),
-
-
-
+                        .padding(4.dp)
                 )
 
                 OutlinedTextField(
-                    state = rememberTextFieldState("60"),
+                    value = pes.toString(),
+                    onValueChange = { nuevoPeso -> onPesChange(nuevoPeso) },
                     label = { Text("Peso (kg)") },
                     modifier = Modifier
                         .weight(1f)
-                        .padding(4.dp).fillMaxWidth()
+                        .padding(4.dp)
                 )
 
                 OutlinedTextField(
@@ -256,7 +270,7 @@ fun EditProfileScreen(
                     label = { Text("Objetivo (kg)") },
                     modifier = Modifier
                         .weight(1f)
-                        .padding(4.dp).fillMaxWidth()
+                        .padding(4.dp)
                 )
             }
 

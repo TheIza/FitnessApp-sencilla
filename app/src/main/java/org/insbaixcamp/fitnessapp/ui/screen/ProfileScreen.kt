@@ -63,7 +63,7 @@ fun ProfileScreen(
                 Icon(
                     painter = painterResource(android.R.drawable.ic_menu_edit),
                     contentDescription = "Editar perfil",
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }

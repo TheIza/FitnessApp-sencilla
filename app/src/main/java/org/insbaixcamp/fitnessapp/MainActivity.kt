@@ -39,18 +39,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun FitnessApp(){
-    var nom:String by remember { mutableStateOf("Laia Soler") }
+    var nom:String by remember { mutableStateOf("Laia Soler")  }
     var email:String by remember { mutableStateOf("laia.soler@exemple.com") }
     var dataNaixament: String by remember { mutableStateOf("15/10/1999") }
     var genre: String by remember { mutableStateOf("Dona") }
     var editant: Boolean by remember { mutableStateOf(true) }
-    var pes: Int by remember { mutableIntStateOf(60)  }
-    var altura: Int by remember { mutableIntStateOf(165)  }
+    var pes: Int by remember { mutableIntStateOf(0)  }
+    var altura: Int by remember { mutableIntStateOf(0)  }
 
 
 
     if(editant){
-        EditProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=false}, pes, altura)
+        EditProfileScreen(nom, onNomChange = {nom = it}, email, onEmailChange = {email = it}, dataNaixament, onNaixamentChange = {dataNaixament = it}, genre, onGenreChange = {genre = it}, onEditar = {editant=false}, pes, onPesChange = {pes = it.toInt()}, altura, onAlturaChange = {altura = it.toInt()})
     } else {
         ProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=true}, pes, altura)
     }
