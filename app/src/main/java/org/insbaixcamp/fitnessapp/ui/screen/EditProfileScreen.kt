@@ -2,30 +2,41 @@
 package org.insbaixcamp.fitnessapp.ui.screen
 
 
+import android.media.Image
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.insbaixcamp.fitnessapp.R
 import org.insbaixcamp.fitnessapp.ui.component.MenuDesplegable
+import org.insbaixcamp.fitnessapp.ui.component.OutlinedDatePickerField
 
 
 @Composable
@@ -46,9 +58,21 @@ fun EditProfileScreen(
     altura: Int
 
 ) {
+    var genereSelect by rememberSaveable { mutableStateOf("")}
     var objectiu by rememberSaveable { mutableStateOf("")}
     var nivell by rememberSaveable { mutableStateOf("")}
+    var img by rememberSaveable { mutableStateOf( R.drawable.ic_launcher_foreground)}
+    var fotoSeleccionada by rememberSaveable {
+        mutableStateOf<Uri?>(null)
+    }
 
+    val selectorImagen = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri != null) {
+            fotoSeleccionada = uri
+        }
+    }
     Column() {
         Row(
             modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
@@ -84,37 +108,68 @@ fun EditProfileScreen(
             horizontalArrangement = Arrangement.SpaceBetween
 
         ) {
+
             Column() {
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    painter = painterResource(img),
                     contentDescription = "Foto de perfil",
                     modifier = Modifier.size(100.dp).clip(RoundedCornerShape(16.dp)).padding(8.dp).padding(start = 8.dp)
                 )
             }
-            Column {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.padding(end = 8.dp)
+            ) {
                 Button(
-                    onClick = {},
-                    modifier = Modifier.width(200.dp)
+                    onClick = {
+                        selectorImagen.launch("image/*")
+                    },
+                    modifier = Modifier
+                        .width(220.dp)
+                        .height(42.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFE5F2EC),
+                        contentColor = Color(0xFF348F70)
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 0.dp
+                    )
                 ) {
                     Icon(
-
                         painter = painterResource(android.R.drawable.ic_menu_camera),
-                        contentDescription = "Editar perfil",
-                        modifier = Modifier.size(30.dp).padding(end = 8.dp)
+                        contentDescription = "Canviar foto",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .padding(end = 4.dp)
                     )
                     Text("Canviar foto")
                 }
+
                 Button(
-                    onClick = {},
-                    modifier = Modifier.width(200.dp)
+                    onClick = {
+                        img = R.drawable.ic_launcher_foreground
+                    },
+                    modifier = Modifier
+                        .width(220.dp)
+                        .height(42.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFFCEBEC),
+                        contentColor = Color(0xFFE53935)
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 0.dp
+                    )
                 ) {
                     Icon(
-
                         painter = painterResource(android.R.drawable.ic_menu_delete),
-                        contentDescription = "Editar perfil",
-                        modifier = Modifier.size(30.dp).padding(end = 8.dp)
+                        contentDescription = "Eliminar foto",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .padding(end = 4.dp)
                     )
-
                     Text("Eliminar foto")
                 }
             }
@@ -128,19 +183,30 @@ fun EditProfileScreen(
         )
 
 
-        Column() {
+        Column(
+            modifier = Modifier.padding(8.dp)
+        ) {
             OutlinedTextField(
                 state = rememberTextFieldState("Nom Cognoms"),
                 label = { Text("Nom complert") },
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp).fillMaxWidth()
             )
             OutlinedTextField(
                 state = rememberTextFieldState("exemple@gmail.com "),
                 label = { Text("Correu electrònic") },
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp).fillMaxWidth()
+            )
+            var birthDate by remember { mutableStateOf<Long?>(null) }
+            // datapicker de calendario
+            OutlinedDatePickerField(
+                label = "Data de naixement",
+                selectedDateMillis = birthDate,
+                onDateSelected = { birthDate = it },
+                modifier = Modifier
+                    .padding(8.dp).fillMaxWidth()
             )
 
-            // datapicker de calendario
+
 
             MenuDesplegable(
                 label = "Objectiu",
@@ -149,23 +215,77 @@ fun EditProfileScreen(
                     "Home",
                     "Preferixo no dir-ho"
                 ),
-                valorSeleccionat = objectiu,
-                onValorSeleccionat = { objectiu = it },
-                modifier = Modifier.fillMaxWidth().padding(8.dp)
+                valorSeleccionat = genereSelect,
+                onValorSeleccionat = { genereSelect = it },
+                modifier = Modifier.padding(8.dp).fillMaxWidth()
             )
 
 
 
             Text(
-                "Dades FIsiques",
-                modifier = Modifier.padding(16.dp),
+                "Dades Fisiques",
+                modifier = Modifier.padding(16.dp).fillMaxWidth(),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
 
-            Row(){
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                OutlinedTextField(
+                    state = rememberTextFieldState("160"),
+                    label = { Text("Altura (cm)") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(4.dp).fillMaxWidth(),
 
+
+
+                )
+
+                OutlinedTextField(
+                    state = rememberTextFieldState("60"),
+                    label = { Text("Peso (kg)") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(4.dp).fillMaxWidth()
+                )
+
+                OutlinedTextField(
+                    state = rememberTextFieldState("55"),
+                    label = { Text("Objetivo (kg)") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(4.dp).fillMaxWidth()
+                )
             }
+
+            Text(
+                "Objectiu principal",
+                modifier = Modifier.padding(16.dp).fillMaxWidth(),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                MenuDesplegable(
+                    label = "Objectiu...",
+                    opcions = listOf(
+                        "Guanyar massa muscular",
+                        "Perdre massa muscular",
+                        "Mantenir pes"
+                    ),
+                    valorSeleccionat = objectiu,
+                    onValorSeleccionat = { objectiu = it },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+
         }
 
 

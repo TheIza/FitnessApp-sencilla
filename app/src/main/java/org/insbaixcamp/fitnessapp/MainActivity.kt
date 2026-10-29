@@ -50,7 +50,7 @@ fun FitnessApp(){
 
 
     if(editant){
-        EditProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=true}, pes, altura)
+        EditProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=false}, pes, altura)
     } else {
         ProfileScreen(nom, email, dataNaixament, genre, onEditar = {editant=true}, pes, altura)
     }
