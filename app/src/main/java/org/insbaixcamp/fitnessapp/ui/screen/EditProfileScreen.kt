@@ -61,7 +61,8 @@ fun EditProfileScreen(
     pes: Int,
     onPesChange: (String) -> Unit,
     altura: Int,
-    onAlturaChange: (String) -> Unit
+    onAlturaChange: (String) -> Unit,
+
 
 ) {
     var genereSelect by rememberSaveable { mutableStateOf("")}
@@ -274,30 +275,9 @@ fun EditProfileScreen(
                 )
             }
 
-            Text(
-                "Objectiu principal",
-                modifier = Modifier.padding(16.dp).fillMaxWidth(),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
 
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-            ) {
-                MenuDesplegable(
-                    label = "Objectiu...",
-                    opcions = listOf(
-                        "Guanyar massa muscular",
-                        "Perdre massa muscular",
-                        "Mantenir pes"
-                    ),
-                    valorSeleccionat = objectiu,
-                    onValorSeleccionat = { objectiu = it },
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+
+
 
 
         }

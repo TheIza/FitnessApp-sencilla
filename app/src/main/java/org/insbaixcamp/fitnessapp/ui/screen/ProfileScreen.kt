@@ -230,7 +230,7 @@ fun ProfileScreen(
                     fontWeight = FontWeight.Bold
                 )
 
-                Text("editar")
+
             }
 
 
@@ -313,39 +313,9 @@ fun ProfileScreen(
                 }
             }
 
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
 
-            ) {
-                Text(
-                    "Nivell d'activitat",
-                    modifier = Modifier.padding(8.dp),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    "editar"
-                )
-            }
 
-            Card() {
-                Column() {
-                    Text(
-                        "Moderat",
-                        modifier = Modifier.padding(8.dp),
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
 
-                    Text(
-                        "Entreno 3-4 vegades per setmana",
-                        modifier = Modifier.padding(8.dp),
-                        fontSize = 24.sp
-                    )
-                }
-            }
         }
     }
 }
