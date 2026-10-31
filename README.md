@@ -2,12 +2,12 @@
 
 | Profile Antes | EditProfile Antes |
 |:---:|:---:|
-| <img width="150" src="https://github.com/user-attachments/assets/652e5c1b-e125-459e-87b6-68d7f2595041" /> | <img width="150" src="https://github.com/user-attachments/assets/7bdf8c0c-6f2a-4d7d-9ea5-21b6442f8706" /> | 
+| <img width="532" src="https://github.com/user-attachments/assets/652e5c1b-e125-459e-87b6-68d7f2595041" /> | <img width="532" src="https://github.com/user-attachments/assets/7bdf8c0c-6f2a-4d7d-9ea5-21b6442f8706" /> | 
 
 
 | Profile después | EditProfile después |
 |:---:|:---:|
-<img width="532" height="1169" alt="image" src="https://github.com/user-attachments/assets/d08c559c-81f1-4504-9e29-df66e3cff295" />| <img width="150" src="https://github.com/user-attachments/assets/0ef4e5ed-3130-495b-968c-68268e2dc0d3" /> |
+<img width="532" height="1169" alt="image" src="https://github.com/user-attachments/assets/d08c559c-81f1-4504-9e29-df66e3cff295" />| <img width="532" src="https://github.com/user-attachments/assets/0ef4e5ed-3130-495b-968c-68268e2dc0d3" /> |
  
 
 
