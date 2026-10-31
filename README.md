@@ -7,7 +7,8 @@
 
 | Profile después | EditProfile después |
 |:---:|:---:|
-<img width="532" height="1169" alt="image" src="https://github.com/user-attachments/assets/d08c559c-81f1-4504-9e29-df66e3cff295" />| <img width="532" src="https://github.com/user-attachments/assets/0ef4e5ed-3130-495b-968c-68268e2dc0d3" /> |
+| <img width="532" height="1166" alt="image" src="https://github.com/user-attachments/assets/0d6a13f9-fdff-4476-afe3-d5c588b268df" />
+ | <img width="532" height="1169" alt="image" src="https://github.com/user-attachments/assets/d08c559c-81f1-4504-9e29-df66e3cff295" /> |
  
 
 
